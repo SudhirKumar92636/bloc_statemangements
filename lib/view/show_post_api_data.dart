@@ -3,6 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mvvm_apps/api_bloc/post_api_bloc.dart';
 import 'package:mvvm_apps/api_bloc/post_api_event.dart';
 import 'package:mvvm_apps/api_bloc/post_api_states.dart';
+import 'package:mvvm_apps/post_comments_bloc.dart/post_comments_event.dart';
+
+import '../post_comments_bloc.dart/post_comments_bloc.dart';
 
 class ShowPostApiData extends StatefulWidget {
   const ShowPostApiData({super.key});
@@ -17,6 +20,7 @@ class _ShowPostApiDataState extends State<ShowPostApiData> {
     // TODO: implement initState
     super.initState();
     context.read<PostApiBloc>().add(GetPostApiData());
+    context.read<PostCommentsBloc>().add((PostCommentsEventData()));
   }
   @override
   Widget build(BuildContext context) {

@@ -6,7 +6,11 @@ import 'package:mvvm_apps/modules/post_comments_modules.dart';
 class PostCommentsRepositry {
   Future<List<PostCommentsModules>?> fetchdata()async{
     var url = "https://jsonplaceholder.typicode.com/comments";
-    var response = await https.get(Uri.parse(url));
+    var response = await https.get(Uri.parse(url),
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        });
     if(response.statusCode ==200|| response.statusCode == 201){
       List<PostCommentsModules> postCommentsModules = List<PostCommentsModules>.from(json.decode(response.body).map((x) => PostCommentsModules.fromJson(x)));
       return postCommentsModules;

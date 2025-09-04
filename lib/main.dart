@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mvvm_apps/api_bloc/post_api_bloc.dart';
 import 'package:mvvm_apps/counter_bloc/counter_bloc.dart';
 import 'package:mvvm_apps/counter_bloc/view/counter-screens.dart';
+import 'package:mvvm_apps/post_comments_bloc.dart/post_comments_bloc.dart';
 import 'package:mvvm_apps/view/show_post_api_data.dart';
 
 void main() {
@@ -23,10 +24,13 @@ class _MyAppState extends State<MyApp> {
       create: (context) => PostApiBloc(),
       child: BlocProvider(
         create: (context) => CounterNumberBloc(),
-        child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          // home: ShowPostApiData(),
-          home: CounterScreensNumber(),
+        child: BlocProvider(
+          create: (context) => PostCommentsBloc(),
+          child: MaterialApp(
+            debugShowCheckedModeBanner: false,
+            home: ShowPostApiData(),
+            // home: CounterScreensNumber(),
+          ),
         ),
       ),
     );
